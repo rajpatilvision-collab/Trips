@@ -150,19 +150,21 @@
 </div>
 
 <!-- ADD TRIP -->
+<!-- ADD TRIP -->
 <div id="addTrip" class="popup">
 <div class="popCard">
 <h3>Add Trip</h3>
 
-<input placeholder="Destination">
-<input type="date">
-<input type="date">
-<input placeholder="Budget">
+<input id="dest" placeholder="Destination">
+<input id="sdate" type="date">
+<input id="edate" type="date">
+<input id="budget" placeholder="Budget">
 
-<button>Add</button>
+<button onclick="saveTrip()">Add</button>
 <button onclick="closePop()">Close</button>
 </div>
 </div>
+
 
 <!-- VIEW TRIPS -->
 <div id="viewTrips" class="popup">
