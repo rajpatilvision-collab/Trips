@@ -126,7 +126,7 @@ RecordID:recordId
 });
 
 // Use exact subform API name
-let dreams = r.data[0].Dream_Destination; 
+let dreams = r.data[0].Dream_Destinations; 
 
 dreamList.innerHTML="";
 
@@ -205,8 +205,5 @@ APIData:data,
 RecordID:recordId
 });
 }
-
-
-
 
 
