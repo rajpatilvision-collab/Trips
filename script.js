@@ -125,7 +125,7 @@ Entity:"Accounts",
 RecordID:recordId
 });
 
-let dreams = r.data[0].Dream_Destination; // API name
+let dreams = r.data[0].Dream_Destinations; // API name
 
 dreamList.innerHTML="";
 
@@ -186,5 +186,6 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
