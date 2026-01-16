@@ -112,45 +112,40 @@ alert("Trip Added");
 loadTrips();
 }
 
-function loadDreams(){
+async function loadDreams() {
+    // 1. Await the API call
+    let response = await ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    });
 
-let r = ZOHO.CRM.API.getRecord({
-Entity:"Accounts",
-RecordID:recordId
-});
+    let record = response.data[0];
+    
+    // 2. Access the subform using its exact API Name (replace 'Subform_API_Name')
+    // Check Settings > Setup > Customization > Modules > Accounts to find the API Name
+    let dreamsSubform = record.Dream_Destination; 
 
-// Use exact subform API name
-let dreams = r.data[0].Dream_Destination; 
+    dreamList.innerHTML = "";
 
-dreamList.innerHTML="";
+    if (!dreamsSubform || dreamsSubform.length === 0) {
+        dreamList.innerHTML = "<p>No dream destinations added</p>";
+        return;
+    }
 
-if(!dreams || dreams.length==0){
-dreamList.innerHTML="<p>No dream destinations added</p>";
-return;
+    // 3. Loop through each row in the subform
+    dreamsSubform.forEach(row => {
+        dreamList.innerHTML += `
+        <div style="background:#f3f6fb; padding:15px; border-radius:12px; margin-bottom:12px; box-shadow:0 5px 10px rgba(0,0,0,.1)">
+            <b>Destination :</b> ${row.Dream_Destination_Name || "-"} <br>
+            <b>Target Month :</b> ${row.Target_Month || "-"} <br>
+            <b>Target Year :</b> ${row.Target_Year || "-"} <br>
+            <b>Priority :</b> ${row.Priority || "-"} <br>
+            <b>Estimated Cost :</b> ₹${row.Estimated_Cost || "0"}
+        </div>
+        `;
+    });
 }
 
-dreamList.innerHTML += `
-<div style="
-background:#f3f6fb;
-padding:15px;
-border-radius:12px;
-margin-bottom:12px;
-box-shadow:0 5px 10px rgba(0,0,0,.1)
-">
-
-<b>Destination :</b> ${d.Dream_Destination_Name || "-"} <br>
-
-<b>Target Month :</b> ${d.Target_Month || "-"} <br>
-
-<b>Target Year :</b> ${d.Target_Year || "-"} <br>
-
-<b>Priority :</b> ${d.Priority || "-"} <br>
-
-<b>Estimated Cost :</b> ₹${d.Estimated_Cost || "0"}
-
-</div>
-`;
-}
 
 
 function openPopup(id){
@@ -196,6 +191,5 @@ APIData:data,
 RecordID:recordId
 });
 }
-
 
 
