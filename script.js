@@ -125,23 +125,42 @@ Entity:"Accounts",
 RecordID:recordId
 });
 
-let dreams = r.data[0].Dream_Destinations; // API name
+// Use exact subform API name
+let dreams = r.data[0].Dream_Destinations; 
 
 dreamList.innerHTML="";
 
-if(!dreams){
-dreamList.innerHTML="No dream destinations";
+if(!dreams || dreams.length==0){
+dreamList.innerHTML="<p>No dream destinations added</p>";
 return;
 }
 
 dreams.forEach(d=>{
-dreamList.innerHTML+=`
-<div style="margin:10px 0">
-<b>${d.Place}</b><br>
-${d.Country}
-</div><hr>`;
+
+dreamList.innerHTML += `
+<div style="
+background:#f3f6fb;
+padding:15px;
+border-radius:12px;
+margin-bottom:12px;
+box-shadow:0 5px 10px rgba(0,0,0,.1)
+">
+
+<b>Destination :</b> ${d.Dream_Destination_Name || "-"} <br>
+
+<b>Target Month :</b> ${d.Target_Month || "-"} <br>
+
+<b>Target Year :</b> ${d.Target_Year || "-"} <br>
+
+<b>Priority :</b> ${d.Priority || "-"} <br>
+
+<b>Estimated Cost :</b> ₹${d.Estimated_Cost || "0"}
+
+</div>
+`;
 });
 }
+
 
 function openPopup(id){
 document.getElementById(id).style.display="flex";
@@ -186,6 +205,5 @@ APIData:data,
 RecordID:recordId
 });
 }
-
 
 
