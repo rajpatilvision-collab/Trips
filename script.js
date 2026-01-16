@@ -83,7 +83,7 @@ function loadTrips() {
             r.data.forEach(t => {
                 allTrips.innerHTML += `
                 <div>
-                    <b>${t.Destination_Name || "No Destination"}</b><br>
+                    <b>${t.Name || "No Destination"}</b><br>
                     ${t.Start_Date || ""} - ${t.End_Date || ""}<br>
                     <b>Cost:</b> ${t.Trip_Cost || "0"}<br>
                     <b>Savings:</b> ${t.Estimated_Savings || "0"}<br>
@@ -198,6 +198,7 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
 
