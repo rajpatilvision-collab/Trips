@@ -75,7 +75,7 @@ function loadTrips() {
     ZOHO.CRM.API.getRelatedRecords({
         Entity: "Accounts",
         RecordID: recordId,
-        RelatedList: "Trip_List" // UPDATE THIS with the name found in Step 1
+        RelatedList: "Trips1" // UPDATE THIS with the name found in Step 1
     }).then(function(r) {
         allTrips.innerHTML = "";
 
@@ -198,6 +198,7 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
 
