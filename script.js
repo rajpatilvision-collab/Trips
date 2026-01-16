@@ -31,14 +31,6 @@ function showProfileTab(tab){
 
 }
 
-
-
-
-
-function openPopup(id){
-document.getElementById(id).style.display="flex";
-}
-
 function closePop(){
 document.querySelectorAll('.popup').forEach(p=>p.style.display="none");
 }
@@ -53,9 +45,9 @@ loadTrips();
 ZOHO.embeddedApp.init();
 
 /* LOAD ACCOUNT DATA */
-async function loadAccount(){
+function loadAccount(){
 
-let r = await ZOHO.CRM.API.getRecord({
+let r =  ZOHO.CRM.API.getRecord({
 Entity:"Accounts",
 RecordID:recordId
 });
@@ -81,9 +73,9 @@ country.value=d.Passport_Issued_Country;
 }
 
 
-async function loadTrips(){
+function loadTrips(){
 
-let r = await ZOHO.CRM.API.getRelatedRecords({
+let r = ZOHO.CRM.API.getRelatedRecords({
 Entity:"Accounts",
 RecordID:recordId,
 RelatedList:"Trips"
@@ -95,12 +87,14 @@ r.data.forEach(t=>{
 allTrips.innerHTML+=`
 <div>
 <b>${t.Destination_Name}</b><br>
-${t.Start_Date} - ${t.End_Date}
+${t.Start_Date} - ${t.End_Date}<br>
+<b>${t.Trip_Cost}</b><br>
+<b>${t.Estimated_Savings}</b><br>
 </div><hr>`;
 });
 }
 
-async function saveTrip(){
+function saveTrip(){
 
 let d={
 Destination_Name:dest.value,
@@ -109,7 +103,7 @@ End_Date:edate.value,
 Trip_Account:recordId
 };
 
-await ZOHO.CRM.API.insertRecord({
+ZOHO.CRM.API.insertRecord({
 Entity:"Trips",
 APIData:d
 });
@@ -118,15 +112,15 @@ alert("Trip Added");
 loadTrips();
 }
 
-async function loadDreams(){
+function loadDreams(){
 
-let r = await ZOHO.CRM.API.getRecord({
+let r = ZOHO.CRM.API.getRecord({
 Entity:"Accounts",
 RecordID:recordId
 });
 
 // Use exact subform API name
-let dreams = r.data[0].Dream_Destinations; 
+let dreams = r.data[0]; 
 
 dreamList.innerHTML="";
 
@@ -134,8 +128,6 @@ if(!dreams || dreams.length==0){
 dreamList.innerHTML="<p>No dream destinations added</p>";
 return;
 }
-
-dreams.forEach(d=>{
 
 dreamList.innerHTML += `
 <div style="
@@ -158,7 +150,6 @@ box-shadow:0 5px 10px rgba(0,0,0,.1)
 
 </div>
 `;
-});
 }
 
 
@@ -172,7 +163,7 @@ if(id=="viewTrips"){
 loadTrips();
 }
 }
-async function autoSaveMember(){
+function autoSaveMember(){
 
 let data={
 Full_Name:fullName.value,
@@ -182,7 +173,7 @@ Email:email.value,
 Address:address.value
 };
 
-await ZOHO.CRM.API.updateRecord({
+ZOHO.CRM.API.updateRecord({
 Entity:"Accounts",
 APIData:data,
 RecordID:recordId
@@ -191,7 +182,7 @@ RecordID:recordId
 console.log("Auto saved");
 }
 
-async function autoSaveDocs(){
+function autoSaveDocs(){
 
 let data={
 Passport_Number:passport.value,
@@ -199,7 +190,7 @@ Passport_Expiry_Date:expiry.value,
 Passport_Issued_Country:country.value
 };
 
-await ZOHO.CRM.API.updateRecord({
+ZOHO.CRM.API.updateRecord({
 Entity:"Accounts",
 APIData:data,
 RecordID:recordId
