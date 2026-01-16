@@ -104,7 +104,7 @@ Trip_Account:recordId
 };
 
 ZOHO.CRM.API.insertRecord({
-Entity:"Trips",
+Entity:"Trip_List",
 APIData:d
 });
 
@@ -191,5 +191,6 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
