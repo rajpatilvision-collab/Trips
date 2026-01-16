@@ -31,7 +31,7 @@
 </div>
 
 <div class="miniCard">
-<p>Year to Date</p>
+<p>Year to Date Savings</p>
 <h3 id="ytd">$0</h3>
 </div>
 
@@ -86,27 +86,27 @@
 
 <div class="field">
 <label>Full Name</label>
-<input id="fullName">
+<input id="fullName" onchange="autoSaveMember()">
 </div>
 
 <div class="field">
 <label>Date of Birth</label>
-<input type="date" id="dob">
+<input type="date" id="dob" onchange="autoSaveMember()">
 </div>
 
 <div class="field">
 <label>Phone</label>
-<input id="phone">
+<input id="phone" onchange="autoSaveMember()">
 </div>
 
 <div class="field">
 <label>Email</label>
-<input id="email">
+<input id="email" onchange="autoSaveMember()">
 </div>
 
 <div class="field">
 <label>Address</label>
-<input id="address">
+<input id="address" onchange="autoSaveMember()">
 </div>
 
 <button onclick="updateMember()">Save</button>
@@ -117,17 +117,17 @@
 
 <div class="field">
 <label>Passport Number</label>
-<input id="passport">
+<input id="passport"  onchange="autoSaveDocs()">
 </div>
 
 <div class="field">
 <label>Expiry Date</label>
-<input type="date" id="expiry">
+<input type="date" id="expiry"  onchange="autoSaveDocs()">
 </div>
 
 <div class="field">
 <label>Country</label>
-<input id="country">
+<input id="country"  onchange="autoSaveDocs()">
 </div>
 
 <button onclick="updateDocs()">Save</button>
