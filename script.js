@@ -83,7 +83,7 @@ country.value=d.Passport_Issued_Country;
 
 async function loadTrips(){
 
-let r = await ZOHO.CRM.API.getRelatedRecords({
+let r = await ZOHO.RECRUIT.API.getRelatedRecords({
 Entity:"Accounts",
 RecordID:recordId,
 RelatedList:"Trips"
@@ -205,6 +205,7 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
 
