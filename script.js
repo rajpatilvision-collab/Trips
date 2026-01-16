@@ -46,31 +46,29 @@ ZOHO.embeddedApp.init();
 
 /* LOAD ACCOUNT DATA */
 function loadAccount(){
+    ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    }).then(function(r){
+        let d = r.data[0];
+        lifeSave.innerHTML = "$" + (d.Lifetime_Savings || 0);
+        ytd.innerHTML="$"+d.Year_To_Date_Savings;
+        avg.innerHTML="$"+d.Average_Savings_Per_Trip;
+        bookings.innerHTML=d.Total_Bookings;
 
-let r =  ZOHO.CRM.API.getRecord({
-Entity:"Accounts",
-RecordID:recordId
-});
+        /* Profile */
+        fullName.value=d.Full_Name;
+        dob.value=d.DOB;
+        phone.value=d.Contact_Number;
+        email.value=d.Email;
+        address.value=d.Address;
 
-let d = r.data[0];
-
-/* Dashboard cards */
-lifeSave.innerHTML="$"+d.Lifetime_Savings;
-ytd.innerHTML="$"+d.Year_To_Date_Savings;
-avg.innerHTML="$"+d.Average_Savings_Per_Trip;
-bookings.innerHTML=d.Total_Bookings;
-
-/* Profile */
-fullName.value=d.Full_Name;
-dob.value=d.DOB;
-phone.value=d.Contact_Number;
-email.value=d.Email;
-address.value=d.Address;
-
-passport.value=d.Passport_Number;
-expiry.value=d.Passport_Expiry_Date;
-country.value=d.Passport_Issued_Country;
+        passport.value=d.Passport_Number;
+        expiry.value=d.Passport_Expiry_Date;
+        country.value=d.Passport_Issued_Country;
+    });
 }
+
 
 
 function loadTrips(){
@@ -78,7 +76,7 @@ function loadTrips(){
 let r = ZOHO.CRM.API.getRelatedRecords({
 Entity:"Accounts",
 RecordID:recordId,
-RelatedList:"Trips"
+RelatedList:"Trip_List"
 });
 
 allTrips.innerHTML="";
@@ -104,7 +102,7 @@ Trip_Account:recordId
 };
 
 ZOHO.CRM.API.insertRecord({
-Entity:"Trip_List",
+Entity:"Trips",
 APIData:d
 });
 
@@ -191,6 +189,5 @@ APIData:data,
 RecordID:recordId
 });
 }
-
 
 
