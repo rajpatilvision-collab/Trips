@@ -71,26 +71,35 @@ function loadAccount(){
 
 
 
-function loadTrips(){
+function loadTrips() {
+    ZOHO.CRM.API.getRelatedRecords({
+        Entity: "Accounts",
+        RecordID: recordId,
+        RelatedList: "Trips" // UPDATE THIS with the name found in Step 1
+    }).then(function(r) {
+        allTrips.innerHTML = "";
 
-let r = ZOHO.CRM.API.getRelatedRecords({
-Entity:"Accounts",
-RecordID:recordId,
-RelatedList:"Trip_List"
-});
-
-allTrips.innerHTML="";
-
-r.data.forEach(t=>{
-allTrips.innerHTML+=`
-<div>
-<b>${t.Destination_Name}</b><br>
-${t.Start_Date} - ${t.End_Date}<br>
-<b>${t.Trip_Cost}</b><br>
-<b>${t.Estimated_Savings}</b><br>
-</div><hr>`;
-});
+        if (r.data && r.data.length > 0) {
+            r.data.forEach(t => {
+                allTrips.innerHTML += `
+                <div>
+                    <b>${t.Destination_Name || "No Destination"}</b><br>
+                    ${t.Start_Date || ""} - ${t.End_Date || ""}<br>
+                    <b>Cost:</b> ${t.Trip_Cost || "0"}<br>
+                    <b>Savings:</b> ${t.Estimated_Savings || "0"}<br>
+                </div><hr>`;
+            });
+        } else {
+            // This runs if the API call is successful but there are no records
+            allTrips.innerHTML = "<p>No trips found for this account.</p>";
+        }
+    }).catch(function(error) {
+        // If it's still a 400 error, this will print the detailed error reason
+        console.error("Trips API Error:", error);
+        allTrips.innerHTML = `<p style="color:red">Error: ${error.message || 'Check console for details'}</p>`;
+    });
 }
+
 
 function saveTrip(){
 
@@ -189,5 +198,6 @@ APIData:data,
 RecordID:recordId
 });
 }
+
 
 
