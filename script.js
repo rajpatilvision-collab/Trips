@@ -64,7 +64,7 @@ let d = r.data[0];
 
 /* Dashboard cards */
 lifeSave.innerHTML="$"+d.Lifetime_Savings;
-ytd.innerHTML="$"+d.Year_to_Date_Savings;
+ytd.innerHTML="$"+d.Year_To_Date_Savings;
 avg.innerHTML="$"+d.Average_Savings_Per_Trip;
 bookings.innerHTML=d.Total_Bookings;
 
@@ -78,44 +78,6 @@ address.value=d.Address;
 passport.value=d.Passport_Number;
 expiry.value=d.Passport_Expiry_Date;
 country.value=d.Passport_Issued_Country;
-}
-
-/* UPDATE MEMBER INFO */
-async function updateMember(){
-
-let data={
-Full_Name:fullName.value,
-DOB:dob.value,
-Contact_Number:phone.value,
-Email:email.value,
-Address:address.value
-};
-
-await ZOHO.CRM.API.updateRecord({
-Entity:"Accounts",
-APIData:data,
-RecordID:recordId
-});
-
-alert("Updated Successfully");
-}
-
-/* UPDATE DOCS */
-async function updateDocs(){
-
-let data={
-Passport_Number:passport.value,
-Passport_Expiry_Date:expiry.value,
-Passport_Issued_Country:country.value
-};
-
-await ZOHO.CRM.API.updateRecord({
-Entity:"Accounts",
-APIData:data,
-RecordID:recordId
-});
-
-alert("Documents Updated");
 }
 
 
@@ -155,3 +117,74 @@ APIData:d
 alert("Trip Added");
 loadTrips();
 }
+
+async function loadDreams(){
+
+let r = await ZOHO.CRM.API.getRecord({
+Entity:"Accounts",
+RecordID:recordId
+});
+
+let dreams = r.data[0].Dream_Destination; // API name
+
+dreamList.innerHTML="";
+
+if(!dreams){
+dreamList.innerHTML="No dream destinations";
+return;
+}
+
+dreams.forEach(d=>{
+dreamList.innerHTML+=`
+<div style="margin:10px 0">
+<b>${d.Place}</b><br>
+${d.Country}
+</div><hr>`;
+});
+}
+
+function openPopup(id){
+document.getElementById(id).style.display="flex";
+
+if(id=="dreams"){
+loadDreams();
+}
+if(id=="viewTrips"){
+loadTrips();
+}
+}
+async function autoSaveMember(){
+
+let data={
+Full_Name:fullName.value,
+DOB:dob.value,
+Contact_Number:phone.value,
+Email:email.value,
+Address:address.value
+};
+
+await ZOHO.CRM.API.updateRecord({
+Entity:"Accounts",
+APIData:data,
+RecordID:recordId
+});
+
+console.log("Auto saved");
+}
+
+async function autoSaveDocs(){
+
+let data={
+Passport_Number:passport.value,
+Passport_Expiry_Date:expiry.value,
+Passport_Issued_Country:country.value
+};
+
+await ZOHO.CRM.API.updateRecord({
+Entity:"Accounts",
+APIData:data,
+RecordID:recordId
+});
+}
+
+
