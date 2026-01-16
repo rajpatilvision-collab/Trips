@@ -1,0 +1,288 @@
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#eef2f7;
+}
+
+/* WRAPPER */
+.wrapper{
+display:flex;
+height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:220px;
+background:linear-gradient(180deg,#4b7bec,#3867d6);
+padding:20px;
+color:#fff;
+box-shadow:4px 0 20px rgba(0,0,0,.2);
+}
+
+.sidebar h2{
+text-align:center;
+letter-spacing:2px;
+}
+
+.sidebar button{
+display:block;
+width:100%;
+padding:12px;
+margin:12px 0;
+border:none;
+background:rgba(255,255,255,.15);
+color:#fff;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.sidebar button:hover,
+.sidebar button.active{
+background:#fff;
+color:#4b7bec;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:25px;
+}
+
+/* TOP CARDS */
+.topCards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.miniCard{
+background:#fff;
+padding:22px;
+border-radius:18px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.miniCard:hover{
+transform:translateY(-5px);
+}
+
+/* BIG CARDS */
+.bigCards{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.bigCard{
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:#fff;
+padding:30px;
+border-radius:22px;
+cursor:pointer;
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+transition:.3s;
+}
+
+.bigCard:hover{
+transform:scale(1.05);
+}
+
+.bigCard button{
+margin:10px 5px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#fff;
+color:#4b7bec;
+font-weight:bold;
+}
+
+/* POPUP */
+.popup{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,.65);
+display:none;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(5px);
+z-index:999;
+}
+
+.popCard{
+background:linear-gradient(180deg,#ffffff,#f3f6fb);
+padding:35px;
+border-radius:22px;
+width:420px;
+text-align:center;
+animation:zoom .4s ease;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+position:relative;
+}
+
+@keyframes zoom{
+from{transform:scale(.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.popCard h3{
+color:#4b7bec;
+margin-bottom:15px;
+}
+
+.popCard button{
+margin:10px 5px;
+padding:10px 25px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+background:linear-gradient(135deg,#4b7bec,#3867d6);
+color:#fff;
+transition:.3s;
+}
+
+.popCard button:hover{
+opacity:.8;
+}
+
+/* INPUT */
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ddd;
+outline:none;
+transition:.3s;
+}
+
+input:focus{
+border-color:#4b7bec;
+box-shadow:0 0 5px rgba(75,123,236,.5);
+}
+
+/* PROFILE PAGE */
+#profile{
+background:linear-gradient(
+rgba(0,0,0,.4),
+rgba(0,0,0,.4)
+),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-size:cover;
+background-position:center;
+min-height:100%;
+padding:40px;
+}
+
+/* PROFILE TABS */
+.profileTabs{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.profileTabs button{
+padding:10px 25px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+background:#fff;
+color:#4b7bec;
+font-weight:bold;
+}
+
+/* PROFILE CARD */
+.profileCard{
+background:rgba(255,255,255,.95);
+padding:30px;
+border-radius:20px;
+width:60%;
+margin:auto;
+box-shadow:0 15px 30px rgba(0,0,0,.3);
+animation:fade .5s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.profileCard button{
+background:#20bf6b;
+color:white;
+border:none;
+padding:12px 30px;
+border-radius:25px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* GLASS EFFECT */
+.glass{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.3);
+}
+
+/* FIELD GROUP */
+.field{
+margin-bottom:18px;
+}
+
+.field label{
+display:block;
+font-size:13px;
+font-weight:600;
+color:#fff;
+margin-bottom:5px;
+letter-spacing:.5px;
+}
+
+.field input{
+background:rgba(255,255,255,0.9);
+border:none;
+padding:12px;
+border-radius:12px;
+}
+
+/* PROFILE CARD ENHANCE */
+.profileCard{
+color:#fff;
+}
+
+/* BUTTON STYLE */
+.profileCard button{
+background:linear-gradient(135deg,#00f2fe,#4facfe);
+box-shadow:0 8px 15px rgba(0,0,0,.3);
+}
+
+/* ACTIVE STATE */
+.sidebar button.active{
+background:#fff;
+color:#4b7bec;
+}
+
+/* PROFILE TAB ACTIVE FIX */
+.profileTabs button{
+background:rgba(255,255,255,.3);
+color:#fff;
+transition:.3s;
+}
+
+.profileTabs button.active{
+background:#fff;
+color:#4b7bec;
+}
+
+
+/* HIDE */
+.hide{display:none}
+

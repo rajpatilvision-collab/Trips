@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+ <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<button onclick="showTab('dashboard')" class="active">Dashboard</button>
+<button onclick="showTab('profile')">Profile</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+<!-- TOP 4 CARDS -->
+<div class="topCards">
+
+<div class="miniCard">
+<p>Lifetime Savings</p>
+<h3 id="lifeSave">$0</h3>
+</div>
+
+<div class="miniCard">
+<p>Year to Date</p>
+<h3 id="ytd">$0</h3>
+</div>
+
+<div class="miniCard">
+<p>Avg Savings/Trip</p>
+<h3 id="avg">$0</h3>
+</div>
+
+<div class="miniCard">
+<p>Total Bookings</p>
+<h3 id="bookings">0</h3>
+</div>
+
+</div>
+
+<!-- BOTTOM 3 CARDS -->
+<div class="bigCards">
+
+<!-- CURRENT TRIP -->
+<div class="bigCard" onclick="openPopup('currentTrip')">
+<h3>Current Trip</h3>
+</div>
+
+<!-- TRIPS -->
+<div class="bigCard">
+<h3>Trips</h3>
+<button onclick="openPopup('addTrip')">Add Trip</button>
+<button onclick="openPopup('viewTrips')">View Trips</button>
+</div>
+
+<!-- DREAM -->
+<div class="bigCard">
+<h3>Dream Destinations</h3>
+<button onclick="openPopup('dreams')">View</button>
+</div>
+
+</div>
+
+</div>
+
+<div id="profile" class="hide">
+
+<div class="profileTabs">
+<button  onclick="showProfileTab('member')" class="active">Member Information</button>
+<button  onclick="showProfileTab('docs')">Travel Documents</button>
+</div>
+
+
+
+<!-- MEMBER INFO -->
+<div id="member" class="profileCard glass">
+
+<div class="field">
+<label>Full Name</label>
+<input id="fullName">
+</div>
+
+<div class="field">
+<label>Date of Birth</label>
+<input type="date" id="dob">
+</div>
+
+<div class="field">
+<label>Phone</label>
+<input id="phone">
+</div>
+
+<div class="field">
+<label>Email</label>
+<input id="email">
+</div>
+
+<div class="field">
+<label>Address</label>
+<input id="address">
+</div>
+
+<button onclick="updateMember()">Save</button>
+</div>
+
+<!-- DOCUMENTS -->
+<div id="docs" class="profileCard glass hide">
+
+<div class="field">
+<label>Passport Number</label>
+<input id="passport">
+</div>
+
+<div class="field">
+<label>Expiry Date</label>
+<input type="date" id="expiry">
+</div>
+
+<div class="field">
+<label>Country</label>
+<input id="country">
+</div>
+
+<button onclick="updateDocs()">Save</button>
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+
+<!-- POPUPS -->
+
+<!-- CURRENT TRIP -->
+<div id="currentTrip" class="popup">
+<div class="popCard">
+<h3>Upcoming Trip</h3>
+<div id="tripInfo"></div>
+<button onclick="closePop()">Close</button>
+</div>
+</div>
+
+<!-- ADD TRIP -->
+<div id="addTrip" class="popup">
+<div class="popCard">
+<h3>Add Trip</h3>
+
+<input placeholder="Destination">
+<input type="date">
+<input type="date">
+<input placeholder="Budget">
+
+<button>Add</button>
+<button onclick="closePop()">Close</button>
+</div>
+</div>
+
+<!-- VIEW TRIPS -->
+<div id="viewTrips" class="popup">
+<div class="popCard">
+<h3>All Trips</h3>
+<div id="allTrips"></div>
+<button onclick="closePop()">Close</button>
+</div>
+</div>
+
+<!-- DREAMS -->
+<div id="dreams" class="popup">
+<div class="popCard">
+<h3>Dream Destinations</h3>
+<div id="dreamList"></div>
+<button onclick="closePop()">Close</button>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
