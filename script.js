@@ -31,6 +31,51 @@ function showProfileTab(tab){
 
 }
 
+function editCard(cardId, label) {
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+    popup.id = "editCardPopup";
+    popup.innerHTML = `
+        <div class="popCard">
+            <h3>Edit ${label}</h3>
+            <input id="editCardValue" type="number" placeholder="Enter value">
+            <button onclick="saveCard('${cardId}')">Save</button>
+            <button onclick="closeEditCard()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    popup.style.display = "flex";
+
+    // Pre-fill current value
+    document.getElementById("editCardValue").value = document.getElementById(cardId).innerText.replace(/[^0-9.]/g,'');
+}
+
+function closeEditCard() {
+    const popup = document.getElementById("editCardPopup");
+    if (popup) popup.remove();
+}
+
+function saveCard(cardId) {
+    const value = document.getElementById("editCardValue").value;
+    let data = { id: recordId };
+
+    switch(cardId){
+        case "lifeSave": data.Lifetime_Savings = value; break;
+        case "ytd": data.Year_To_Date_Savings = value; break;
+        case "avg": data.Average_Savings_Per_Trip = value; break;
+        case "bookings": data.Total_Bookings = value; break;
+    }
+
+    ZOHO.CRM.API.updateRecord({
+        Entity: "Accounts",
+        APIData: data
+    }).then(() => {
+        alert("Card updated ✔");
+        closeEditCard();
+        loadAccount(); // refresh top cards
+    });
+}
+
 function closePop(){
 document.querySelectorAll('.popup').forEach(p=>p.style.display="none");
 }
