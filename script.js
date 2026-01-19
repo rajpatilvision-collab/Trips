@@ -110,7 +110,7 @@ let d={
     Trip_Cost: document.getElementById("budget").value,
 
     // 🔴 IMPORTANT - LINK TO ACCOUNT
-    Account_Name: {
+     Trip_Account: {
         id: recordId
     }
 };
@@ -318,6 +318,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
