@@ -200,8 +200,6 @@ ZOHO.CRM.API.updateRecord({
 Entity:"Trips",
 APIData:data
 }).then(()=>{
-
-alert("Trip updated ✔");
 closePop();
 loadTrips();
 
@@ -580,6 +578,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
