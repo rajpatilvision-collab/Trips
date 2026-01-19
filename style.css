@@ -411,44 +411,7 @@ body{
   }
 }
 
-/* ================= SMALL CENTERED POPUPS ================= */
-.pop-sm{
-  width: 420px;
-  max-width: 90%;
-  max-height: 520px;
-  padding: 24px;
-  border-radius: 22px;
-  animation: popCenter .35s ease;
-}
 
-/* Center animation */
-@keyframes popCenter{
-  from{
-    transform: scale(.9) translateY(20px);
-    opacity: 0;
-  }
-  to{
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Popup container always center */
-.popup{
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Reduce inner scroll noise */
-.pop-sm{
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.pop-sm::-webkit-scrollbar{
-  width: 0;
-}
 
 /* ================= ZOHO WIDGET 700x700 FIX ================= */
 @media (max-width: 720px), (max-height: 720px) {
@@ -574,7 +537,7 @@ body{
 
   /* Popups fit widget */
   .popCard{
-    width:90%;
+    width:35%;
     max-height:80vh;
     padding:20px;
   }
@@ -585,6 +548,7 @@ body{
     grid-template-columns:repeat(2,1fr);
   }
 }
+
 
 
 
