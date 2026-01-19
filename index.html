@@ -10,10 +10,11 @@
 <div class="wrapper">
 
 <!-- SIDEBAR -->
-<div class="sidebar">
-
-<button onclick="showTab('dashboard')" class="active">Dashboard</button>
-<button onclick="showTab('profile')">Profile</button>
+<div class="sidebarWrap">
+  <div class="sidebar">
+    <button onclick="showTab('dashboard')" class="active"> 📊 Dashboard</button>
+    <button onclick="showTab('profile')">  👤 Profile</button>
+  </div>
 </div>
 
 <!-- MAIN -->
@@ -52,20 +53,20 @@
 <div class="bigCards">
 
 <!-- CURRENT TRIP -->
-<div class="bigCard">
+<div class="bigCard1">
 <h3>Current Trip</h3>
 <button onclick="openPopup('currentTrip')">View</button>
 </div>
 
 <!-- TRIPS -->
-<div class="bigCard">
+<div class="bigCard2">
 <h3>Trips</h3>
 <button onclick="openPopup('addTrip')">Add Trip</button>
 <button onclick="openPopup('viewTrips')">View Trips</button>
 </div>
 
 <!-- DREAM -->
-<div class="bigCard">
+<div class="bigCard3">
 <h3>Dream Destinations</h3>
 <button onclick="openPopup('dreams')">View</button>
 </div>
@@ -85,7 +86,7 @@
 
 <!-- MEMBER INFO -->
 <div id="member" class="profileCard glass">
-
+    <h2>Member Information</h2>
     
     <div class="field">
         <label>Full Name</label>
@@ -119,7 +120,7 @@
 <!-- DOCUMENTS -->
 <div id="docs" class="profileCard glass hide">
 
-    
+    <h2>Travel Documents</h2>
     <div class="field">
         <label>Passport Number</label>
         <input id="passport" disabled>
