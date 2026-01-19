@@ -345,3 +345,17 @@ z-index:2000;
 #editDreamPopup{
     z-index:3000;
 }
+#addDreamPopup, #editDreamPopup{
+    z-index:3000; /* always above main popup */
+}
+
+#dreams button {
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
