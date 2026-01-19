@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
- <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
+<script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
 </head>
 
 <body>
@@ -12,8 +12,8 @@
 <!-- SIDEBAR -->
 <div class="sidebarWrap">
   <div class="sidebar">
-    <button onclick="showTab('dashboard')" class="active"> 📊 Dashboard</button>
-    <button onclick="showTab('profile')">  👤 Profile</button>
+    <button onclick="showTab('dashboard')" class="active">📊 Dashboard</button>
+    <button onclick="showTab('profile')">👤 Profile</button>
   </div>
 </div>
 
@@ -27,25 +27,24 @@
 <div class="topCards">
 
 <div class="miniCard" onclick="editCard('lifeSave','Lifetime Savings')">
-    <p>Lifetime Savings</p>
+    <p>💰 Lifetime Savings</p>
     <h3 id="lifeSave">$0</h3>
 </div>
 
 <div class="miniCard" onclick="editCard('ytd','Year to Date Savings')">
-    <p>Year to Date Savings</p>
+    <p>📅 Year-to-Date Savings</p>
     <h3 id="ytd">$0</h3>
 </div>
 
 <div class="miniCard" onclick="editCard('avg','Avg Savings/Trip')">
-    <p>Avg Savings/Trip</p>
+    <p>📈 Avg Savings / Trip</p>
     <h3 id="avg">$0</h3>
 </div>
 
 <div class="miniCard" onclick="editCard('bookings','Total Bookings')">
-    <p>Total Bookings</p>
+    <p>🎯 Total Bookings</p>
     <h3 id="bookings">0</h3>
 </div>
-
 
 </div>
 
@@ -54,98 +53,92 @@
 
 <!-- CURRENT TRIP -->
 <div class="bigCard1">
-<h3>Current Trip</h3>
-<button onclick="openPopup('currentTrip')">View</button>
+  <h3>✈️ Current Trip</h3>
+  <button onclick="openPopup('currentTrip')">👀 View</button>
 </div>
 
 <!-- TRIPS -->
 <div class="bigCard2">
-<h3>Trips</h3>
-<button onclick="openPopup('addTrip')">Add Trip</button>
-<button onclick="openPopup('viewTrips')">View Trips</button>
+  <h3>🧳 Trips</h3>
+  <button onclick="openPopup('addTrip')">➕ Add Trip</button>
+  <button onclick="openPopup('viewTrips')">📋 View Trips</button>
 </div>
 
 <!-- DREAM -->
 <div class="bigCard3">
-<h3>Dream Destinations</h3>
-<button onclick="openPopup('dreams')">View</button>
+  <h3>🌍 Dream Destinations</h3>
+  <button onclick="openPopup('dreams')">💭 View</button>
 </div>
 
 </div>
-
 </div>
 
+<!-- PROFILE -->
 <div id="profile" class="hide">
 
 <div class="profileTabs">
-<button  onclick="showProfileTab('member')" class="active">Member Information</button>
-<button  onclick="showProfileTab('docs')">Travel Documents</button>
+  <button onclick="showProfileTab('member')" class="active">👤 Member Information</button>
+  <button onclick="showProfileTab('docs')">🛂 Travel Documents</button>
 </div>
-
-
 
 <!-- MEMBER INFO -->
 <div id="member" class="profileCard glass">
-    <h2>Member Information</h2>
-    
-    <div class="field">
-        <label>Full Name</label>
-        <input id="fullName" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Date of Birth</label>
-        <input type="date" id="dob" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Phone</label>
-        <input id="phone" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Email</label>
-        <input id="email" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Address</label>
-        <input id="address" disabled>
-    </div>
-    <button id="editMemberBtn" onclick="enableMemberEdit()">Edit</button>
-    <button id="saveMemberBtn" onclick="saveMember()" style="display:none">Save</button>
-</div>
+  <h2>👤 Member Information</h2>
+  
+  <div class="field">
+    <label>🧑 Full Name</label>
+    <input id="fullName" disabled>
+  </div>
+  
+  <div class="field">
+    <label>🎂 Date of Birth</label>
+    <input type="date" id="dob" disabled>
+  </div>
+  
+  <div class="field">
+    <label>📞 Phone</label>
+    <input id="phone" disabled>
+  </div>
+  
+  <div class="field">
+    <label>📧 Email</label>
+    <input id="email" disabled>
+  </div>
+  
+  <div class="field">
+    <label>🏠 Address</label>
+    <input id="address" disabled>
+  </div>
 
+  <button id="editMemberBtn" onclick="enableMemberEdit()">✏️ Edit</button>
+  <button id="saveMemberBtn" onclick="saveMember()" style="display:none">💾 Save</button>
+</div>
 
 <!-- DOCUMENTS -->
 <div id="docs" class="profileCard glass hide">
+  <h2>🛂 Travel Documents</h2>
 
-    <h2>Travel Documents</h2>
-    <div class="field">
-        <label>Passport Number</label>
-        <input id="passport" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Expiry Date</label>
-        <input type="date" id="expiry" disabled>
-    </div>
-    
-    <div class="field">
-        <label>Country</label>
-        <input id="country" disabled>
-    </div>
-    <button id="editDocsBtn" onclick="enableDocsEdit()">Edit</button>
-    <button id="saveDocsBtn" onclick="saveDocs()" style="display:none">Save</button>
+  <div class="field">
+    <label>📘 Passport Number</label>
+    <input id="passport" disabled>
+  </div>
+  
+  <div class="field">
+    <label>⏳ Expiry Date</label>
+    <input type="date" id="expiry" disabled>
+  </div>
+  
+  <div class="field">
+    <label>🌐 Country</label>
+    <input id="country" disabled>
+  </div>
+
+  <button id="editDocsBtn" onclick="enableDocsEdit()">✏️ Edit</button>
+  <button id="saveDocsBtn" onclick="saveDocs()" style="display:none">💾 Save</button>
 </div>
 
-
 </div>
-
-
 </div>
-
-
 </div>
 </div>
 
@@ -153,73 +146,75 @@
 
 <!-- CURRENT TRIP -->
 <div id="currentTrip" class="popup">
-<div class="popCard">
-<h3>Upcoming Trip</h3>
-<div id="tripInfo"></div>
-<button onclick="closePop()">Close</button>
-</div>
+  <div class="popCard">
+    <h3>✈️ Upcoming Trip</h3>
+    <div id="tripInfo"></div>
+    <button onclick="closePop()">❌ Close</button>
+  </div>
 </div>
 
-<!-- ADD TRIP -->
 <!-- ADD TRIP -->
 <div id="addTrip" class="popup">
-<div class="popCard">
-<h3>Add Trip</h3>
-<div class="field">
-        <label>Destination Name</label>
-        <input id="dest" placeholder="Destination">
-    </div>
-    
+  <div class="popCard">
+    <h3>➕ Add Trip</h3>
+
     <div class="field">
-        <label>Start Date</label>
-        <input id="sdate" type="date">
-    </div>
-    
-    <div class="field">
-        <label>End Date</label>
-        <input id="edate" type="date">
-    </div>
-    <div class="field">
-        <label>Budget</label>
-        <input id="budget" placeholder="Budget">
+      <label>📍 Destination Name</label>
+      <input id="dest" placeholder="Destination">
     </div>
 
-<button onclick="saveTrip()">Add</button>
-<button onclick="closePop()">Close</button>
-</div>
+    <div class="field">
+      <label>📅 Start Date</label>
+      <input id="sdate" type="date">
+    </div>
+
+    <div class="field">
+      <label>📅 End Date</label>
+      <input id="edate" type="date">
+    </div>
+
+    <div class="field">
+      <label>💸 Budget</label>
+      <input id="budget" placeholder="Budget">
+    </div>
+
+    <button onclick="saveTrip()">💾 Save</button>
+    <button onclick="closePop()">❌ Close</button>
+  </div>
 </div>
 
+<!-- EDIT TRIP -->
 <div id="editTrip" class="popup">
-<div class="popCard">
-<h3>Edit Trip</h3>
+  <div class="popCard">
+    <h3>✏️ Edit Trip</h3>
 
-<input id="edit_dest">
-<input id="edit_sdate" type="date">
-<input id="edit_edate" type="date">
-<input id="edit_budget">
+    <input id="edit_dest" placeholder="📍 Destination">
+    <input id="edit_sdate" type="date">
+    <input id="edit_edate" type="date">
+    <input id="edit_budget" placeholder="💸 Budget">
 
-<button onclick="updateTrip()">Save</button>
-<button onclick="closePop()">Close</button>
-</div>
+    <button onclick="updateTrip()">💾 Save</button>
+    <button onclick="closePop()">❌ Close</button>
+  </div>
 </div>
 
 <!-- VIEW TRIPS -->
 <div id="viewTrips" class="popup">
-<div class="popCard">
-<h3>All Trips</h3>
-<div id="allTrips" class="tripGrid"></div>
-<button onclick="closePop()">Close</button>
-</div>
+  <div class="popCard">
+    <h3>📋 All Trips</h3>
+    <div id="allTrips" class="tripGrid"></div>
+    <button onclick="closePop()">❌ Close</button>
+  </div>
 </div>
 
 <!-- DREAMS -->
 <div id="dreams" class="popup">
-<div class="popCard">
-<h3>Dream Destinations</h3>
-<div id="dreamList"></div>
-<button onclick="addDreamPopup()">+ Add Dream</button>
-<button onclick="closePop()">Close</button>
-</div>
+  <div class="popCard">
+    <h3>🌍 Dream Destinations</h3>
+    <div id="dreamList"></div>
+    <button onclick="addDreamPopup()">✨ Add Dream</button>
+    <button onclick="closePop()">❌ Close</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
