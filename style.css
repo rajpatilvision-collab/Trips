@@ -448,6 +448,7 @@ body{
   /* TOP CARDS → 1 per row */
   .topCards{
     gap:14px;
+    grid-template-columns:repeat(4,1fr);
   }
 
   .miniCard{
@@ -462,13 +463,6 @@ body{
   /* BIG CARDS → stacked */
   .bigCards{
     gap:16px;
-  }
-
-  .topCards{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .bigCards{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -547,4 +541,5 @@ body{
     grid-template-columns:1fr;
   }
 }
+
 
