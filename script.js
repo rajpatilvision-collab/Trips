@@ -87,7 +87,7 @@ ZOHO.embeddedApp.on("PageLoad", function (data) {
   // ✅ SAFELY resize (non-blocking)
   try {
     ZOHO.CRM.UI.Resize({
-      width: 900,
+      width: 1100,
       height: 700
     });
   } catch (e) {
@@ -591,5 +591,6 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
