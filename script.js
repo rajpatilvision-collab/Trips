@@ -104,33 +104,39 @@ function loadTrips() {
 function saveTrip(){
 
 let d={
-Name: document.getElementById("dest").value,
-Start_Date: document.getElementById("sdate").value,
-End_Date: document.getElementById("edate").value,
-Budget: document.getElementById("budget").value, // if field exists
-Account_Name: recordId // LOOKUP API NAME
+    Name: document.getElementById("dest").value,
+    Start_Date: document.getElementById("sdate").value,
+    End_Date: document.getElementById("edate").value,
+    Trip_Cost: document.getElementById("budget").value,
+
+    // 🔴 IMPORTANT - LINK TO ACCOUNT
+    Account_Name: {
+        id: recordId
+    }
 };
 
 ZOHO.CRM.API.insertRecord({
-Entity:"Trips",
-APIData:d
+    Entity:"Trips",
+    APIData:d
 }).then(function(res){
 
-alert("Trip Added Successfully ✔");
-closePop();
-loadTrips();
+    alert("Trip Added & Linked Successfully ✔");
 
-// Clear form
-dest.value="";
-sdate.value="";
-edate.value="";
-budget.value="";
+    closePop();
+    loadTrips(); // refresh related list
+
+    // Clear form
+    dest.value="";
+    sdate.value="";
+    edate.value="";
+    budget.value="";
 
 }).catch(function(err){
-console.error(err);
-alert("Error adding trip. Check console.");
+    console.error(err);
+    alert("Error adding trip. Check console.");
 });
 }
+
 
 
 async function loadDreams() {
