@@ -163,11 +163,24 @@
 <div id="addTrip" class="popup">
 <div class="popCard">
 <h3>Add Trip</h3>
-
-<input id="dest" placeholder="Destination">
-<input id="sdate" type="date">
-<input id="edate" type="date">
-<input id="budget" placeholder="Budget">
+<div class="field">
+        <label>Destination Name</label>
+        <input id="dest" placeholder="Destination">
+    </div>
+    
+    <div class="field">
+        <label>Start Date</label>
+        <input id="sdate" type="date">
+    </div>
+    
+    <div class="field">
+        <label>End Date</label>
+        <input id="edate" type="date">
+    </div>
+    <div class="field">
+        <label>Budget</label>
+        <input id="budget" placeholder="Budget">
+    </div>
 
 <button onclick="saveTrip()">Add</button>
 <button onclick="closePop()">Close</button>
@@ -196,4 +209,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
