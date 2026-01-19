@@ -191,6 +191,7 @@ function enableMemberEdit(){
 function saveMember(){
 
     let data={
+        id: recordId,   // 🔴 VERY IMPORTANT
         Full_Name:fullName.value,
         DOB:dob.value,
         Contact_Number:phone.value,
@@ -200,8 +201,7 @@ function saveMember(){
 
     ZOHO.CRM.API.updateRecord({
         Entity:"Accounts",
-        APIData:data,
-        RecordID:recordId
+        APIData:data
     }).then(()=>{
         alert("Member info updated ✔");
 
@@ -209,8 +209,12 @@ function saveMember(){
 
         editMemberBtn.style.display="inline-block";
         saveMemberBtn.style.display="none";
+    }).catch(err=>{
+        console.error(err);
+        alert("Update failed. Check console.");
     });
 }
+
 
 function toggleMemberFields(disabled){
     fullName.disabled=disabled;
@@ -233,6 +237,7 @@ function enableDocsEdit(){
 function saveDocs(){
 
     let data={
+        id: recordId,   // 🔴 VERY IMPORTANT
         Passport_Number:passport.value,
         Passport_Expiry_Date:expiry.value,
         Passport_Issued_Country:country.value
@@ -240,8 +245,7 @@ function saveDocs(){
 
     ZOHO.CRM.API.updateRecord({
         Entity:"Accounts",
-        APIData:data,
-        RecordID:recordId
+        APIData:data
     }).then(()=>{
         alert("Documents updated ✔");
 
@@ -249,8 +253,12 @@ function saveDocs(){
 
         editDocsBtn.style.display="inline-block";
         saveDocsBtn.style.display="none";
+    }).catch(err=>{
+        console.error(err);
+        alert("Update failed. Check console.");
     });
 }
+
 
 function toggleDocsFields(disabled){
     passport.disabled=disabled;
