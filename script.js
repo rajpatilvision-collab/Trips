@@ -72,32 +72,86 @@ function loadAccount(){
 
 
 function loadTrips() {
-    ZOHO.CRM.API.getRelatedRecords({
-        Entity: "Accounts",
-        RecordID: recordId,
-        RelatedList: "Trips1" // UPDATE THIS with the name found in Step 1
-    }).then(function(r) {
-        allTrips.innerHTML = "";
 
-        if (r.data && r.data.length > 0) {
-            r.data.forEach(t => {
-                allTrips.innerHTML += `
-                <div>
-                    <b>${t.Name || "No Destination"}</b><br>
-                    ${t.Start_Date || ""} - ${t.End_Date || ""}<br>
-                    <b>Cost:</b> ${t.Trip_Cost || "0"}<br>
-                    <b>Savings:</b> ${t.Estimated_Savings || "0"}<br>
-                </div><hr>`;
-            });
-        } else {
-            // This runs if the API call is successful but there are no records
-            allTrips.innerHTML = "<p>No trips found for this account.</p>";
-        }
-    }).catch(function(error) {
-        // If it's still a 400 error, this will print the detailed error reason
-        console.error("Trips API Error:", error);
-        allTrips.innerHTML = `<p style="color:red">Error: ${error.message || 'Check console for details'}</p>`;
-    });
+ZOHO.CRM.API.getRelatedRecords({
+Entity:"Accounts",
+RecordID:recordId,
+RelatedList:"Trips1"
+}).then(res=>{
+
+allTrips.innerHTML="";
+
+if(!res.data || res.data.length==0){
+allTrips.innerHTML="<p>No trips found</p>";
+return;
+}
+
+res.data.forEach(t=>{
+
+allTrips.innerHTML+=`
+<div class="tripCard">
+<b>${t.Name || "No Destination"}</b><br>
+${t.Start_Date || "-"} → ${t.End_Date || "-"}<br>
+<b>Budget:</b> ₹${t.Trip_Cost || 0}<br>
+
+<button onclick="openEditTrip('${t.id}','${t.Name}','${t.Start_Date}','${t.End_Date}','${t.Trip_Cost}')">Edit</button>
+
+<button onclick="deleteTrip('${t.id}')">Delete</button>
+</div>`;
+});
+
+});
+}
+
+let editTripId;
+
+function openEditTrip(id,name,sd,ed,budget){
+
+editTripId=id;
+
+edit_dest.value=name;
+edit_sdate.value=sd;
+edit_edate.value=ed;
+edit_budget.value=budget;
+
+document.getElementById("editTrip").style.display="flex";
+}
+
+function updateTrip(){
+
+let data={
+id:editTripId,
+Name:edit_dest.value,
+Start_Date:edit_sdate.value,
+End_Date:edit_edate.value,
+Trip_Cost:edit_budget.value
+};
+
+ZOHO.CRM.API.updateRecord({
+Entity:"Trips",
+APIData:data
+}).then(()=>{
+
+alert("Trip updated ✔");
+closePop();
+loadTrips();
+
+});
+}
+
+function deleteTrip(id){
+
+if(!confirm("Delete this trip?")) return;
+
+ZOHO.CRM.API.deleteRecord({
+Entity:"Trips",
+RecordID:id
+}).then(()=>{
+
+alert("Trip deleted ✔");
+loadTrips();
+
+});
 }
 
 
@@ -110,7 +164,7 @@ let d={
     Trip_Cost: document.getElementById("budget").value,
 
     // 🔴 IMPORTANT - LINK TO ACCOUNT
-     Trip_Account: {
+    Trip_Account: {
         id: recordId
     }
 };
@@ -318,8 +372,6 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
-
-
 
 
 
