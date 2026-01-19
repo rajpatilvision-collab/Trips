@@ -134,16 +134,12 @@ alert("Error adding trip. Check console.");
 
 
 async function loadDreams() {
-    // 1. Await the API call
     let response = await ZOHO.CRM.API.getRecord({
         Entity: "Accounts",
         RecordID: recordId
     });
 
     let record = response.data[0];
-    
-    // 2. Access the subform using its exact API Name (replace 'Subform_API_Name')
-    // Check Settings > Setup > Customization > Modules > Accounts to find the API Name
     let dreamsSubform = record.Dream_Destination; 
 
     dreamList.innerHTML = "";
@@ -167,6 +163,54 @@ async function loadDreams() {
     });
 }
 
+async function loadCurrentTrip(){
+
+    try{
+        let res = await ZOHO.CRM.API.getRelatedRecords({
+            Entity: "Accounts",
+            RecordID: recordId,
+            RelatedList: "Trips1"   // 🔴 YOUR RELATED LIST API NAME
+        });
+
+        if(!res.data || res.data.length==0){
+            tripInfo.innerHTML="<p>No trips found</p>";
+            return;
+        }
+
+        let today = new Date();
+
+        // Filter upcoming trips
+        let upcoming = res.data.filter(t=>{
+            return t.Start_Date && new Date(t.Start_Date) >= today;
+        });
+
+        if(upcoming.length==0){
+            tripInfo.innerHTML="<p>No upcoming trips</p>";
+            return;
+        }
+
+        // Sort by nearest date
+        upcoming.sort((a,b)=>{
+            return new Date(a.Start_Date) - new Date(b.Start_Date);
+        });
+
+        let trip = upcoming[0]; // nearest trip
+
+        tripInfo.innerHTML=`
+        <div style="background:#f3f6fb;padding:15px;border-radius:12px">
+            <b>Destination:</b> ${trip.Name || "-"} <br>
+            <b>Start Date:</b> ${trip.Start_Date || "-"} <br>
+            <b>End Date:</b> ${trip.End_Date || "-"} <br>
+            <b>Budget:</b> ₹${trip.Trip_Cost || "0"} <br>
+            <b>Savings:</b> ₹${trip.Estimated_Savings || "0"}
+        </div>
+        `;
+
+    }catch(e){
+        console.error(e);
+        tripInfo.innerHTML="<p style='color:red'>Error loading trip</p>";
+    }
+}
 
 
 function openPopup(id){
@@ -177,6 +221,9 @@ loadDreams();
 }
 if(id=="viewTrips"){
 loadTrips();
+}
+if(id=="currentTrip"){
+    loadCurrentTrip();
 }
 }
 /* MEMBER EDIT */
