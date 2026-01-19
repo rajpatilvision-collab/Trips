@@ -1,16 +1,4 @@
-ZOHO.embeddedApp.on("PageLoad", function(data){
-
-  // ✅ Resize widget when it opens
-  ZOHO.CRM.UI.Resize({
-    width: 900,
-    height: 700
-  });
-
-  // Existing logic (DO NOT REMOVE)
-  recordId = data.EntityId[0];
-  loadAccount();
-  loadTrips();
-});// MAIN TABS
+// MAIN TABS
 function showTab(tab){
     document.getElementById("dashboard").classList.add("hide");
     document.getElementById("profile").classList.add("hide");
@@ -94,6 +82,22 @@ document.querySelectorAll('.popup').forEach(p=>p.style.display="none");
 let recordId;
 
 /* INIT */
+ZOHO.embeddedApp.on("PageLoad", function(data){
+
+  // ✅ Resize widget when it opens
+  ZOHO.CRM.UI.Resize({
+    width: 900,
+    height: 700
+  });
+
+  // Existing logic (DO NOT REMOVE)
+  recordId = data.EntityId[0];
+  loadAccount();
+  loadTrips();
+});
+
+ZOHO.embeddedApp.init();
+
 
 /* LOAD ACCOUNT DATA */
 function loadAccount(){
@@ -577,7 +581,4 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
-
-
-
 
