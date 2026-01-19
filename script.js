@@ -305,7 +305,6 @@ function editDream(index) {
     popup.classList.add("popup");
     popup.id = "editDreamPopup";
     popup.innerHTML = `
-    <div class="popCard pop-sm">
         <div class="popCard">
             <h3>Edit Dream Destination</h3>
             <input id="editDreamName" placeholder="Destination Name">
@@ -315,7 +314,6 @@ function editDream(index) {
             <input id="editDreamCost" placeholder="Estimated Cost">
             <button onclick="saveDream()">Save</button>
             <button onclick="closeEditDream()">Close</button>
-        </div>
         </div>
     `;
     document.body.appendChild(popup);
@@ -395,7 +393,6 @@ function addDreamPopup() {
     popup.classList.add("popup");
     popup.id = "addDreamPopup";
     popup.innerHTML = `
-    <div class="popCard pop-sm">
         <div class="popCard">
             <h3>Add New Dream Destination</h3>
             <input id="newDreamName" placeholder="Destination Name">
@@ -406,7 +403,6 @@ function addDreamPopup() {
             <button onclick="saveNewDream()">Save</button>
             <button onclick="closeAddDream()">Close</button>
         </div>
-    </div>
     `;
     document.body.appendChild(popup);
     popup.style.display = "flex";
@@ -595,6 +591,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
