@@ -517,7 +517,6 @@ function saveMember(){
         Entity:"Accounts",
         APIData:data
     }).then(()=>{
-        alert("Member info updated ✔");
 
         toggleMemberFields(true);
 
@@ -578,6 +577,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
