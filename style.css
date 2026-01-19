@@ -303,3 +303,19 @@ box-shadow:0 5px 10px rgba(0,0,0,.1);
 margin-top:8px;
 margin-right:6px;
 }
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.4);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:1000;
+}
+
+#editTrip{
+z-index:2000; /* higher than other popups */
+}
