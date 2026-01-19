@@ -541,13 +541,17 @@ body{
     max-height:80vh;
     padding:20px;
   }
-
+  
+#viewTrips .popCard, #dreams .popCard{
+    width: 70%;
+  }
   /* Trip & dream cards tighter */
   .tripGrid,
   #dreamList{
     grid-template-columns:repeat(2,1fr);
   }
 }
+
 
 
 
