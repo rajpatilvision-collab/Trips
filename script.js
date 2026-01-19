@@ -198,14 +198,16 @@ ZOHO.CRM.API.insertRecord({
 
 
 async function loadDreams() {
+
     let response = await ZOHO.CRM.API.getRecord({
         Entity: "Accounts",
         RecordID: recordId
     });
 
     let record = response.data[0];
-    let dreamsSubform = record.Dream_Destination_1; 
+    let dreamsSubform = record.Dream_Place;
 
+    var dreamList = document.getElementById("dreamList");
     dreamList.innerHTML = "";
 
     if (!dreamsSubform || dreamsSubform.length === 0) {
@@ -213,10 +215,10 @@ async function loadDreams() {
         return;
     }
 
-    // 3. Loop through each row in the subform
     dreamsSubform.forEach(row => {
+
         dreamList.innerHTML += `
-        <div style="background:#f3f6fb; padding:15px; border-radius:12px; margin-bottom:12px; box-shadow:0 5px 10px rgba(0,0,0,.1)">
+        <div class="dreamCard">
             <b>Destination :</b> ${row.Dream_Destination_Name || "-"} <br>
             <b>Target Month :</b> ${row.Target_Month || "-"} <br>
             <b>Target Year :</b> ${row.Target_Year || "-"} <br>
@@ -376,6 +378,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
