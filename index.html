@@ -84,50 +84,58 @@
 <!-- MEMBER INFO -->
 <div id="member" class="profileCard glass">
 
-<div class="field">
-<label>Full Name</label>
-<input id="fullName" onchange="autoSaveMember()">
+    
+    <div class="field">
+        <label>Full Name</label>
+        <input id="fullName" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Date of Birth</label>
+        <input type="date" id="dob" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Phone</label>
+        <input id="phone" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Email</label>
+        <input id="email" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Address</label>
+        <input id="address" disabled>
+    </div>
+    <button id="editMemberBtn" onclick="enableMemberEdit()">Edit</button>
+    <button id="saveMemberBtn" onclick="saveMember()" style="display:none">Save</button>
 </div>
 
-<div class="field">
-<label>Date of Birth</label>
-<input type="date" id="dob" onchange="autoSaveMember()">
-</div>
-
-<div class="field">
-<label>Phone</label>
-<input id="phone" onchange="autoSaveMember()">
-</div>
-
-<div class="field">
-<label>Email</label>
-<input id="email" onchange="autoSaveMember()">
-</div>
-
-<div class="field">
-<label>Address</label>
-<input id="address" onchange="autoSaveMember()">
-</div>
-</div>
 
 <!-- DOCUMENTS -->
 <div id="docs" class="profileCard glass hide">
 
-<div class="field">
-<label>Passport Number</label>
-<input id="passport"  onchange="autoSaveDocs()">
+    
+    <div class="field">
+        <label>Passport Number</label>
+        <input id="passport" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Expiry Date</label>
+        <input type="date" id="expiry" disabled>
+    </div>
+    
+    <div class="field">
+        <label>Country</label>
+        <input id="country" disabled>
+    </div>
+    <button id="editDocsBtn" onclick="enableDocsEdit()">Edit</button>
+    <button id="saveDocsBtn" onclick="saveDocs()" style="display:none">Save</button>
 </div>
 
-<div class="field">
-<label>Expiry Date</label>
-<input type="date" id="expiry"  onchange="autoSaveDocs()">
-</div>
-
-<div class="field">
-<label>Country</label>
-<input id="country"  onchange="autoSaveDocs()">
-</div>
-</div>
 
 </div>
 
