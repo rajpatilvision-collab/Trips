@@ -300,3 +300,48 @@ margin-right:6px;
 #editTrip{
 z-index:2000;
 }
+
+#dreamList{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:15px;
+    max-height:60vh;
+    overflow-y:auto;
+    padding-right:5px;
+}
+
+.dreamCard{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    position:relative;
+    text-align:left;
+}
+
+.dreamActions{
+    margin-top:10px;
+    display:flex;
+    justify-content:flex-end;
+    gap:5px;
+}
+
+.dreamActions button{
+    padding:6px 12px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    color:#fff;
+    font-size:13px;
+    transition:.3s;
+}
+
+.dreamActions button:hover{
+    opacity:.8;
+}
+
+/* Make popup over popup visible */
+#editDreamPopup{
+    z-index:3000;
+}
