@@ -179,42 +179,84 @@ if(id=="viewTrips"){
 loadTrips();
 }
 }
-function autoSaveMember(){
+/* MEMBER EDIT */
 
-let data={
-Full_Name:fullName.value,
-DOB:dob.value,
-Contact_Number:phone.value,
-Email:email.value,
-Address:address.value
-};
+function enableMemberEdit(){
+    toggleMemberFields(false);
 
-ZOHO.CRM.API.updateRecord({
-Entity:"Accounts",
-APIData:data,
-RecordID:recordId
-});
-
-console.log("Auto saved");
+    editMemberBtn.style.display="none";
+    saveMemberBtn.style.display="inline-block";
 }
 
-function autoSaveDocs(){
+function saveMember(){
 
-let data={
-Passport_Number:passport.value,
-Passport_Expiry_Date:expiry.value,
-Passport_Issued_Country:country.value
-};
+    let data={
+        Full_Name:fullName.value,
+        DOB:dob.value,
+        Contact_Number:phone.value,
+        Email:email.value,
+        Address:address.value
+    };
 
-ZOHO.CRM.API.updateRecord({
-Entity:"Accounts",
-APIData:data,
-RecordID:recordId
-});
+    ZOHO.CRM.API.updateRecord({
+        Entity:"Accounts",
+        APIData:data,
+        RecordID:recordId
+    }).then(()=>{
+        alert("Member info updated ✔");
+
+        toggleMemberFields(true);
+
+        editMemberBtn.style.display="inline-block";
+        saveMemberBtn.style.display="none";
+    });
 }
-console.log(Object.keys(1117866000000604258));
+
+function toggleMemberFields(disabled){
+    fullName.disabled=disabled;
+    dob.disabled=disabled;
+    phone.disabled=disabled;
+    email.disabled=disabled;
+    address.disabled=disabled;
+}
 
 
+/* DOCS EDIT */
+
+function enableDocsEdit(){
+    toggleDocsFields(false);
+
+    editDocsBtn.style.display="none";
+    saveDocsBtn.style.display="inline-block";
+}
+
+function saveDocs(){
+
+    let data={
+        Passport_Number:passport.value,
+        Passport_Expiry_Date:expiry.value,
+        Passport_Issued_Country:country.value
+    };
+
+    ZOHO.CRM.API.updateRecord({
+        Entity:"Accounts",
+        APIData:data,
+        RecordID:recordId
+    }).then(()=>{
+        alert("Documents updated ✔");
+
+        toggleDocsFields(true);
+
+        editDocsBtn.style.display="inline-block";
+        saveDocsBtn.style.display="none";
+    });
+}
+
+function toggleDocsFields(disabled){
+    passport.disabled=disabled;
+    expiry.disabled=disabled;
+    country.disabled=disabled;
+}
 
 
 
