@@ -241,7 +241,7 @@ margin-bottom:18px;
 display:block;
 font-size:13px;
 font-weight:600;
-color:#fff;
+color:#000000;
 margin-bottom:5px;
 letter-spacing:.5px;
 }
@@ -285,4 +285,5 @@ color:#4b7bec;
 
 /* HIDE */
 .hide{display:none}
+
 
