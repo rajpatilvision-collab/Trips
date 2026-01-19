@@ -210,14 +210,10 @@ loadTrips();
 
 function deleteTrip(id){
 
-if(!confirm("Delete this trip?")) return;
-
 ZOHO.CRM.API.deleteRecord({
 Entity:"Trips",
 RecordID:id
 }).then(()=>{
-
-alert("Trip deleted ✔");
 loadTrips();
 
 });
@@ -242,8 +238,6 @@ ZOHO.CRM.API.insertRecord({
     Entity:"Trips",
     APIData:d
 }).then(function(res){
-
-    alert("Trip Added & Linked Successfully ✔");
 
     closePop();
     loadTrips(); // refresh related list
@@ -361,7 +355,6 @@ function saveDream() {
             Entity: "Accounts",
             APIData: { id: recordId, Dream_Place: dreams }
         }).then(() => {
-            alert("Dream destination updated ✔");
             closeEditDream();
             loadDreams();
         });
@@ -369,7 +362,6 @@ function saveDream() {
 }
 
 function deleteDream(index) {
-    if (!confirm("Delete this dream destination?")) return;
 
     ZOHO.CRM.API.getRecord({
         Entity: "Accounts",
@@ -382,7 +374,6 @@ function deleteDream(index) {
             Entity: "Accounts",
             APIData: { id: recordId, Dream_Place: dreams }
         }).then(() => {
-            alert("Dream destination deleted ✔");
             loadDreams();
         });
     });
@@ -433,7 +424,6 @@ function saveNewDream() {
             Entity: "Accounts",
             APIData: { id: recordId, Dream_Place: dreams }
         }).then(() => {
-            alert("Dream destination added ✔");
             closeAddDream();
             loadDreams(); // refresh dream list
         });
@@ -573,7 +563,6 @@ function saveDocs(){
         Entity:"Accounts",
         APIData:data
     }).then(()=>{
-        alert("Documents updated ✔");
 
         toggleDocsFields(true);
 
@@ -591,6 +580,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
