@@ -257,7 +257,6 @@ body{
 }
 
 #member input,#docs input{
-  width: 1325px;
   padding:12px;
   margin:10px 0;
   border-radius:12px;
@@ -321,7 +320,12 @@ body{
   background:rgba(255,255,255,.9);
   border:none;
   border-radius:14px;
-  width: 1300px;
+}
+#member input,
+#docs input,
+.field input{
+  width:95%;
+  max-width:100%;
 }
 
 /* PROFILE BUTTONS */
@@ -387,4 +391,78 @@ body{
 #addDreamPopup,
 #editDreamPopup{
   z-index:3000;
+}
+
+/* ================= RESPONSIVE FIX ================= */
+
+/* Tablets & small laptops */
+@media (max-width: 1200px) {
+
+  .topCards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .bigCards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .profileCard{
+    width:90%;
+  }
+}
+
+/* Zoho Widget / Small height screens */
+@media (max-width: 900px) {
+
+  .wrapper{
+    padding:12px;
+    gap:12px;
+  }
+
+  .sidebar{
+    width:160px;
+    padding:16px;
+  }
+
+  .topCards{
+    grid-template-columns:1fr;
+  }
+
+  .bigCards{
+    grid-template-columns:1fr;
+  }
+
+  .miniCard,
+  .bigCard1,
+  .bigCard2,
+  .bigCard3{
+    padding:22px;
+  }
+
+  .profileTabs{
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .profileCard{
+    width:100%;
+    padding:22px;
+  }
+}
+
+/* Very small iframe / short height */
+@media (max-height: 700px) {
+
+  .main{
+    padding:16px;
+  }
+
+  .profileCard{
+    max-height:70vh;
+    overflow:auto;
+  }
+
+  .popCard{
+    max-height:75vh;
+  }
 }
