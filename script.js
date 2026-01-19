@@ -198,7 +198,6 @@ ZOHO.CRM.API.insertRecord({
 
 
 async function loadDreams() {
-
     let response = await ZOHO.CRM.API.getRecord({
         Entity: "Accounts",
         RecordID: recordId
@@ -207,7 +206,7 @@ async function loadDreams() {
     let record = response.data[0];
     let dreamsSubform = record.Dream_Place;
 
-    var dreamList = document.getElementById("dreamList");
+    let dreamList = document.getElementById("dreamList");
     dreamList.innerHTML = "";
 
     if (!dreamsSubform || dreamsSubform.length === 0) {
@@ -215,19 +214,116 @@ async function loadDreams() {
         return;
     }
 
-    dreamsSubform.forEach(row => {
-
+    dreamsSubform.forEach((row, index) => {
         dreamList.innerHTML += `
         <div class="dreamCard">
-            <b>Destination :</b> ${row.Dream_Destination_Name || "-"} <br>
-            <b>Target Month :</b> ${row.Target_Month || "-"} <br>
-            <b>Target Year :</b> ${row.Target_Year || "-"} <br>
-            <b>Priority :</b> ${row.Priority || "-"} <br>
-            <b>Estimated Cost :</b> ₹${row.Estimated_Cost || "0"}
+            <b>Destination:</b> ${row.Dream_Destination_Name || "-"}<br>
+            <b>Month:</b> ${row.Target_Month || "-"}<br>
+            <b>Year:</b> ${row.Target_Year || "-"}<br>
+            <b>Priority:</b> ${row.Priority || "-"}<br>
+            <b>Estimated Cost:</b> ₹${row.Estimated_Cost || "0"}<br>
+            <div class="dreamActions">
+                <button onclick="editDream(${index})">Edit</button>
+                <button onclick="deleteDream(${index})">Delete</button>
+            </div>
         </div>
         `;
     });
 }
+
+let currentDreamIndex = null;
+
+function editDream(index) {
+    currentDreamIndex = index;
+    // Load current data into popup inputs
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+    popup.id = "editDreamPopup";
+    popup.innerHTML = `
+        <div class="popCard">
+            <h3>Edit Dream Destination</h3>
+            <input id="editDreamName" placeholder="Destination Name">
+            <input id="editDreamMonth" placeholder="Target Month">
+            <input id="editDreamYear" placeholder="Target Year">
+            <input id="editDreamPriority" placeholder="Priority">
+            <input id="editDreamCost" placeholder="Estimated Cost">
+            <button onclick="saveDream()">Save</button>
+            <button onclick="closeEditDream()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+
+    // Pre-fill values
+    ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    }).then(res => {
+        let row = res.data[0].Dream_Place[currentDreamIndex];
+        document.getElementById("editDreamName").value = row.Dream_Destination_Name || "";
+        document.getElementById("editDreamMonth").value = row.Target_Month || "";
+        document.getElementById("editDreamYear").value = row.Target_Year || "";
+        document.getElementById("editDreamPriority").value = row.Priority || "";
+        document.getElementById("editDreamCost").value = row.Estimated_Cost || "";
+    });
+
+    popup.style.display = "flex";
+}
+
+function closeEditDream() {
+    const popup = document.getElementById("editDreamPopup");
+    if (popup) popup.remove();
+}
+
+function saveDream() {
+    // Collect new data
+    let updated = {
+        Dream_Destination_Name: document.getElementById("editDreamName").value,
+        Target_Month: document.getElementById("editDreamMonth").value,
+        Target_Year: document.getElementById("editDreamYear").value,
+        Priority: document.getElementById("editDreamPriority").value,
+        Estimated_Cost: document.getElementById("editDreamCost").value
+    };
+
+    // Get current record
+    ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    }).then(res => {
+        let dreams = res.data[0].Dream_Place || [];
+        dreams[currentDreamIndex] = updated;
+
+        ZOHO.CRM.API.updateRecord({
+            Entity: "Accounts",
+            APIData: { id: recordId, Dream_Place: dreams }
+        }).then(() => {
+            alert("Dream destination updated ✔");
+            closeEditDream();
+            loadDreams();
+        });
+    });
+}
+
+function deleteDream(index) {
+    if (!confirm("Delete this dream destination?")) return;
+
+    ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    }).then(res => {
+        let dreams = res.data[0].Dream_Place || [];
+        dreams.splice(index, 1);
+
+        ZOHO.CRM.API.updateRecord({
+            Entity: "Accounts",
+            APIData: { id: recordId, Dream_Place: dreams }
+        }).then(() => {
+            alert("Dream destination deleted ✔");
+            loadDreams();
+        });
+    });
+}
+
+
 
 async function loadCurrentTrip(){
 
@@ -378,8 +474,6 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
-
-
 
 
 
