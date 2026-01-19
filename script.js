@@ -323,6 +323,58 @@ function deleteDream(index) {
     });
 }
 
+function addDreamPopup() {
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+    popup.id = "addDreamPopup";
+    popup.innerHTML = `
+        <div class="popCard">
+            <h3>Add New Dream</h3>
+            <input id="newDreamName" placeholder="Destination Name">
+            <input id="newDreamMonth" placeholder="Target Month">
+            <input id="newDreamYear" placeholder="Target Year">
+            <input id="newDreamPriority" placeholder="Priority">
+            <input id="newDreamCost" placeholder="Estimated Cost">
+            <button onclick="saveNewDream()">Save</button>
+            <button onclick="closeAddDream()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    popup.style.display = "flex";
+}
+
+function closeAddDream() {
+    const popup = document.getElementById("addDreamPopup");
+    if (popup) popup.remove();
+}
+
+function saveNewDream() {
+    const newDream = {
+        Dream_Destination_Name: document.getElementById("newDreamName").value,
+        Target_Month: document.getElementById("newDreamMonth").value,
+        Target_Year: document.getElementById("newDreamYear").value,
+        Priority: document.getElementById("newDreamPriority").value,
+        Estimated_Cost: document.getElementById("newDreamCost").value
+    };
+
+    ZOHO.CRM.API.getRecord({
+        Entity: "Accounts",
+        RecordID: recordId
+    }).then(res => {
+        const dreams = res.data[0].Dream_Place || [];
+        dreams.push(newDream);
+
+        ZOHO.CRM.API.updateRecord({
+            Entity: "Accounts",
+            APIData: { id: recordId, Dream_Place: dreams }
+        }).then(() => {
+            alert("Dream destination added ✔");
+            closeAddDream();
+            loadDreams(); // refresh dream list
+        });
+    });
+}
+
 
 
 async function loadCurrentTrip(){
