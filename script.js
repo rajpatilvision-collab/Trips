@@ -212,5 +212,8 @@ APIData:data,
 RecordID:recordId
 });
 }
+console.log(Object.keys(record));
+
+
 
 
