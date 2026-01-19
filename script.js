@@ -82,20 +82,30 @@ document.querySelectorAll('.popup').forEach(p=>p.style.display="none");
 let recordId;
 
 /* INIT */
-ZOHO.embeddedApp.on("PageLoad", function(data){
+ZOHO.embeddedApp.on("PageLoad", function (data) {
 
-  // ✅ Resize widget when it opens
-  ZOHO.CRM.UI.Resize({
-    width: 900,
-    height: 700
-  });
+  // ✅ SAFELY resize (non-blocking)
+  try {
+    ZOHO.CRM.UI.Resize({
+      width: 900,
+      height: 700
+    });
+  } catch (e) {
+    console.warn("Resize skipped:", e);
+  }
 
-  // Existing logic (DO NOT REMOVE)
+  // ✅ SAFETY CHECK
+  if (!data || !data.EntityId || !data.EntityId.length) {
+    console.error("EntityId not available", data);
+    return; // ⛔ STOP if context missing
+  }
+
   recordId = data.EntityId[0];
+
+  // ✅ Load only after context confirmed
   loadAccount();
   loadTrips();
 });
-
 ZOHO.embeddedApp.init();
 
 
@@ -581,4 +591,5 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
