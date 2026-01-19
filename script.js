@@ -114,6 +114,10 @@ edit_sdate.value=sd;
 edit_edate.value=ed;
 edit_budget.value=budget;
 
+/* CLOSE VIEW POPUP */
+document.getElementById("viewTrips").style.display="none";
+
+/* OPEN EDIT POPUP */
 document.getElementById("editTrip").style.display="flex";
 }
 
