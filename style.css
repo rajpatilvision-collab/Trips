@@ -499,13 +499,13 @@ body{
   .profileTabs button{
     font-size:14px;
     padding:8px 18px;
+    width:170px;
   }
 
   /* Profile card fits height */
   .profileCard{
     width:100%;
     padding:18px;
-    max-height:65vh;
     overflow-y:auto;
   }
 
@@ -541,5 +541,6 @@ body{
     grid-template-columns:1fr;
   }
 }
+
 
 
