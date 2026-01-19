@@ -488,7 +488,6 @@ body{
   .bigCard3 button{
     padding:8px 16px;
     font-size:14px;
-    width:70px
   }
 
   /* Profile tabs wrap */
@@ -548,6 +547,7 @@ body{
     grid-template-columns:repeat(2,1fr);
   }
 }
+
 
 
 
