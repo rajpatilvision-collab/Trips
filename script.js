@@ -394,7 +394,7 @@ function addDreamPopup() {
     popup.id = "addDreamPopup";
     popup.innerHTML = `
         <div class="popCard">
-            <h3>Add New Dream</h3>
+            <h3>Add New Dream Destination</h3>
             <input id="newDreamName" placeholder="Destination Name">
             <input id="newDreamMonth" placeholder="Target Month">
             <input id="newDreamYear" placeholder="Target Year">
@@ -591,6 +591,7 @@ function toggleDocsFields(disabled){
     expiry.disabled=disabled;
     country.disabled=disabled;
 }
+
 
 
 
