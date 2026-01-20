@@ -444,6 +444,7 @@ body{
     padding:14px;
     overflow-y:auto;
     overflow-x:hidden;
+    scrollbar-width:none;
   }
 
   /* TOP CARDS → 1 per row */
@@ -549,6 +550,7 @@ body{
   .tripGrid,
   #dreamList{
     grid-template-columns:repeat(2,1fr);
+    scrollbar-width: none;
   }
 }
 
@@ -644,6 +646,7 @@ body{
 #member {
   -ms-overflow-style: none;
 }
+
 
 
 
