@@ -365,7 +365,7 @@ body{
 }
 
 .dreamCard{
-  background:#fff;
+  background: #f5f8fb;
   padding:16px;
   border-radius:18px;
   box-shadow:0 10px 25px rgba(0,0,0,.12);
@@ -373,9 +373,6 @@ body{
 
 .dreamActions{
   display:flex;
-  justify-content:flex-end;
-  gap:8px;
-  margin-top:10px;
 }
 
 .dreamActions button{
@@ -646,6 +643,7 @@ body{
 #member {
   -ms-overflow-style: none;
 }
+
 
 
 
