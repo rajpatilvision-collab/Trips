@@ -84,8 +84,11 @@
 
 <!-- MEMBER INFO -->
 <div id="member" class="profileCard glass">
+  <div class="profile1">
   <h2>👤 Member Information</h2>
-  
+  <button id="editMemberBtn" onclick="enableMemberEdit()">✏️ Edit</button>
+  <button id="saveMemberBtn" onclick="saveMember()" style="display:none">💾 Save</button>
+  </div>
   <div class="field">
     <label>🧑 Full Name</label>
     <input id="fullName" disabled>
@@ -110,15 +113,15 @@
     <label>🏠 Address</label>
     <input id="address" disabled>
   </div>
-
-  <button id="editMemberBtn" onclick="enableMemberEdit()">✏️ Edit</button>
-  <button id="saveMemberBtn" onclick="saveMember()" style="display:none">💾 Save</button>
 </div>
 
 <!-- DOCUMENTS -->
 <div id="docs" class="profileCard glass hide">
+  <div class="profile1">
   <h2>🛂 Travel Documents</h2>
-
+  <button id="editMemberBtn" onclick="enableMemberEdit()">✏️ Edit</button>
+  <button id="saveMemberBtn" onclick="saveMember()" style="display:none">💾 Save</button>
+  </div>
   <div class="field">
     <label>📘 Passport Number</label>
     <input id="passport" disabled>
@@ -133,9 +136,6 @@
     <label>🌐 Country</label>
     <input id="country" disabled>
   </div>
-
-  <button id="editDocsBtn" onclick="enableDocsEdit()">✏️ Edit</button>
-  <button id="saveDocsBtn" onclick="saveDocs()" style="display:none">💾 Save</button>
 </div>
 
 </div>
