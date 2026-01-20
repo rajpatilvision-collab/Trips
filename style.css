@@ -214,7 +214,7 @@ body{
 }
 .popCard button{
     margin: 10px 5px;
-    padding: 10px 25px;
+    padding: 10px 20px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -376,12 +376,12 @@ body{
 }
 
 .dreamActions button{
-  padding:6px 14px;
-  border:none;
-  border-radius:14px;
-  background:#00c6ff;
-  color:#fff;
-  cursor:pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #00c6ff;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* POPUP OVER POPUP */
@@ -643,6 +643,7 @@ body{
 #member {
   -ms-overflow-style: none;
 }
+
 
 
 
