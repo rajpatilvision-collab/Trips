@@ -609,6 +609,43 @@ body{
   background: #999;
 }
 
+/* ================= HIDE SCROLLBAR (ALL TRIPS POPUP) ================= */
+
+/* Chrome, Edge, Safari */
+#viewTrips .popCard::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Firefox */
+#viewTrips .popCard {
+  scrollbar-width: none;
+}
+
+/* Internet Explorer / old Edge */
+#viewTrips .popCard {
+  -ms-overflow-style: none;
+}
+
+/* ================= HIDE SCROLLBAR – MEMBER INFORMATION ================= */
+
+/* Chrome, Edge, Safari */
+#member::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Firefox */
+#member {
+  scrollbar-width: none;
+}
+
+/* Old Edge / IE */
+#member {
+  -ms-overflow-style: none;
+}
+
+
 
 
 
