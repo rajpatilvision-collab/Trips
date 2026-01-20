@@ -375,15 +375,6 @@ body{
   display:flex;
 }
 
-.dreamActions button{
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    background: #00c6ff;
-    color: #fff;
-    cursor: pointer;
-}
-
 /* POPUP OVER POPUP */
 #addDreamPopup,
 #editDreamPopup{
@@ -643,6 +634,7 @@ body{
 #member {
   -ms-overflow-style: none;
 }
+
 
 
 
