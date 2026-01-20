@@ -528,7 +528,7 @@ body{
   }
 
   .profileCard button{
-    width:100%;
+    width:110px;
     height:44px;
     font-size:15px;
   }
@@ -643,6 +643,7 @@ body{
 #member {
   -ms-overflow-style: none;
 }
+
 
 
 
